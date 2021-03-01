@@ -115,3 +115,13 @@ plt.legend()
 # Show the plot
 plt.show()
 
+
+# 1) We can clearly see a positive peak in the polarity scores between 2014 and 2016. And before that the polarity scores experience a "drop" around 2010.
+# 
+# 2) What the cause for this particular development in polarity score is hard to say. My best guess is that we would probably see similar trends had we analyzed a different set of headlines. The trend being the wave we see visualized here.
+
+# In[ ]:
+
+
+
+
