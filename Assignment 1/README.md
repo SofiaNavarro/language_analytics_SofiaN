@@ -9,7 +9,7 @@ If this does not work, or you get "permission denied" try:
 ```
 chmod +x create_visual_venv.sh
 ```
-This bash script should now have upgraded to the latest version of pip as well as installed the packages from the requirements.txt. Furhtermore, the bash script also creates a folder in the visual_data folder called A1_output.
+This bash script should now have upgraded to the latest version of pip as well as installed the packages from the requirements.txt. Furhtermore, the bash script also creates a folder in the language_data folder called A1_output.
 
 Make sure you are still in the 'Assignment 1' folder, and activate the virtual environment by typing:
 ```
