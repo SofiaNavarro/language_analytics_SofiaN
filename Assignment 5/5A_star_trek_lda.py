@@ -3,6 +3,9 @@ import sys, os
 sys.path.append(os.path.join(".."))
 from pprint import pprint
 import json
+from pathlib import Path
+import argparse
+from tqdm import tqdm
 
 # data and nlp
 import pandas as pd
@@ -29,9 +32,14 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 
 def main():
+    parser = argparse.ArgumentParser(description = "LDA topic modelling on all character lines of all Star Trek series")
+    parser.add_argument("-d", "--data_path", type = Path, default = Path('../language_data/A5_data.json'), help = "path to data")
+    parser.add_argument("-t", "--topic_num", default = 12, type = int, help = "the number of topics to identify in the Star Trek episodes")
+    args = parser.parse_args()
+    
     # Load in the dataset containing all the lines from all the characters of all the Star Trek series
     # Unfortunately, some newlines have been parsed wrong, so that some words are 'glued' togehter. E.g. "camefrom"
-    with open('all_series_lines.json') as file:
+    with open(args.data_path) as file:
         content = file.read()
         line_dict = json.loads(content)
 
@@ -39,7 +47,7 @@ def main():
     episodes = {}
 
     # loop through all the series
-    for series_name, series in line_dict.items():
+    for series_name, series in tqdm(line_dict.items()):
     # loop through all episodes (both the name, and the content)
         for episode_name, episode in series.items():
     # make empty string so we can later add all the characters lines to
@@ -123,7 +131,8 @@ def main():
     
     # visualize rolling mean of the topics
     topic_plot = sns.lineplot(data=df.T.rolling(20).mean())
-    topic_plot.figure.savefig('topics.png')
-    
+    topic_plot.figure.savefig(os.path.join('..', 'language_data', 'A5_output', 'topics.png'))
+
+
 if __name__ == '__main__':
     main()

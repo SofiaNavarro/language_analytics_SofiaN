@@ -39,9 +39,8 @@ def main():
         for entity in doc.ents:
             if entity.label_ == "PERSON":
                 tmp_list.append(entity.text)
-        # add tmp_æist to main list
+        # add tmp_list to main list
         text_entities.append(tmp_list)
-
 
     ## Create an edgelist
 
@@ -83,7 +82,7 @@ def main():
     figure = nx.draw_random(G, with_labels=True, node_size=20, font_size=10)
 
     # Make viz outpath
-    outpath_viz = os.path.join('..', 'viz',' network.png')
+    outpath_viz = os.path.join('..', 'language_data', 'A4_output','network.png')
 
     # Save plot
     nx.draw(G, with_labels=True, node_size=20, font_size=10)
@@ -101,13 +100,13 @@ def main():
 
 
     # Make output for centrality measures
-    outpath_cen = os.path.join('..', 'measures', 'measures.csv')
+    outpath_cen = os.path.join('..', 'language_data', 'A4_output', 'measures.csv')
 
     # Save the centrality measure dataframes to the output
-    bc_dataframe.to_csv("outpath_cen")
-    ev_dataframe.to_csv("outpath_cen")
+    bc_dataframe.to_csv(outpath_cen)
+    ev_dataframe.to_csv(outpath_cen)
 
-    print("Done, the weighted edge-plot should be saved under the 'viz' folder, and the .csv file containing the centrality measures are in the outpath_cen folder")
+    print("Done, the weighted edge-plot is in '../language_data/A4_output' and the .csv file containing the centrality measures are in outpath_cen")
 
 if __name__ == '__main__':
     main()
